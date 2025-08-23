@@ -6,7 +6,7 @@ import { AlertCircle, Users } from 'lucide-react'
 import { ALL_PEOPLE } from '@/lib/queries'
 import LoadingSpinner from '@/components/loading-spinner'
 import Filters from '@/components/filters'
-import PeopleList from '@/components/people-list'
+import CharacterList from '@/components/character-list'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import type { AllPeopleResponse, PaginationVariables } from '@/types/swapi'
 
@@ -91,7 +91,7 @@ export default function PeoplePage() {
               Showing {people.length} characters
             </p>
           </div>
-          <PeopleList people={people} />
+          <CharacterList people={people} />
         </div>
       </main>
     </div>

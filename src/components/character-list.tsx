@@ -1,6 +1,6 @@
 import { useVirtualizer } from '@tanstack/react-virtual'
 import { useRef } from 'react'
-import PeopleCard from '@/components/people-card'
+import CharacterCard from '@/components/character-card'
 import type { Person } from '@/types/swapi'
 
 type PeopleListProps = {
@@ -46,7 +46,7 @@ export default function PeopleList({ people }: PeopleListProps) {
               }}
             >
               <div className="h-full p-2">
-                <PeopleCard person={person} />
+                <CharacterCard person={person} />
               </div>
             </div>
           )

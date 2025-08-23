@@ -3,24 +3,24 @@
 import { useState, useMemo } from 'react'
 import { useQuery } from '@apollo/client/react'
 import { AlertCircle, Users } from 'lucide-react'
-import { ALL_PEOPLE } from '@/lib/queries'
 import LoadingSpinner from '@/components/loading-spinner'
 import Filters from '@/components/filters'
 import CharacterList from '@/components/character-list'
+import { ALL_PEOPLE } from '@/lib/queries'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import type { AllPeopleResponse, PaginationVariables } from '@/types/swapi'
 
-export default function PeoplePage() {
+export default function CharacterPage() {
   const [searchTerm, setSearchTerm] = useState('')
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc')
-  const { data, loading, error } = useQuery<AllPeopleResponse, PaginationVariables>(
-    ALL_PEOPLE,
-    {
-      variables: { first: 82 },
-    },
-  )
+  const { data, loading, error } = useQuery<
+    AllPeopleResponse,
+    PaginationVariables
+  >(ALL_PEOPLE, {
+    variables: { first: 82 },
+  })
 
-  const people = useMemo(() => {
+  const characters = useMemo(() => {
     if (!data?.allPeople?.people) {
       return []
     }
@@ -43,7 +43,7 @@ export default function PeoplePage() {
       <div className="min-h-screen bg-black text-white">
         <LoadingSpinner />
       </div>
-    );
+    )
   }
 
   if (error) {
@@ -51,14 +51,14 @@ export default function PeoplePage() {
       <div className="min-h-screen bg-black text-white">
         <div className="container mx-auto px-4 pt-8">
           <Alert className="border-red-500 bg-red-500/10">
-            <AlertCircle className="h-4 w-" fill="white" />
+            <AlertCircle className="w- h-4" fill="white" />
             <AlertDescription className="text-red-400">
               Error loading characters: {error?.message}
             </AlertDescription>
           </Alert>
         </div>
       </div>
-    );
+    )
   }
 
   return (
@@ -67,12 +67,12 @@ export default function PeoplePage() {
         <div className="container mx-auto px-4 py-6">
           <div className="flex items-center space-x-3">
             <Users className="h-8 w-8 text-yellow-400" />
-            <h1 className="text-2xl md:text-3xl font-bold text-white">
+            <h1 className="text-2xl font-bold text-white md:text-3xl">
               Star Wars Characters
             </h1>
           </div>
-          <p className="text-gray-400 mt-2">
-            Explore the galaxy's most iconic characters
+          <p className="mt-2 text-gray-400">
+            Explore the galaxy&apos;s most iconic characters
           </p>
         </div>
       </header>
@@ -88,10 +88,10 @@ export default function PeoplePage() {
         <div className="py-4">
           <div className="mb-4 flex items-center justify-between">
             <p className="text-sm text-gray-400">
-              Showing {people.length} characters
+              Showing {characters.length} characters
             </p>
           </div>
-          <CharacterList people={people} />
+          <CharacterList characters={characters} />
         </div>
       </main>
     </div>

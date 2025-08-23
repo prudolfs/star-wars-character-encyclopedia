@@ -3,19 +3,19 @@ import { useRef } from 'react'
 import CharacterCard from '@/components/character-card'
 import type { Person } from '@/types/swapi'
 
-type PeopleListProps = {
-  people: Person[]
+type CharacterListProps = {
+  characters: Person[]
 }
 
-export default function PeopleList({ people }: PeopleListProps) {
+export default function CharacterList({ characters }: CharacterListProps) {
   const container = useRef<HTMLDivElement>(null)
 
   const virtualizer = useVirtualizer({
-    count: people.length,
+    count: characters.length,
     getScrollElement: () => container.current,
     estimateSize: () => 82,
     overscan: 10,
-    scrollMargin:  0,
+    scrollMargin: 0,
   })
 
   return (
@@ -32,7 +32,7 @@ export default function PeopleList({ people }: PeopleListProps) {
         }}
       >
         {virtualizer.getVirtualItems().map((virtualRow) => {
-          const person = people[virtualRow.index]
+          const person = characters[virtualRow.index]
           return (
             <div
               key={virtualRow.key}
@@ -46,7 +46,7 @@ export default function PeopleList({ people }: PeopleListProps) {
               }}
             >
               <div className="h-full p-2">
-                <CharacterCard person={person} />
+                <CharacterCard character={person} />
               </div>
             </div>
           )

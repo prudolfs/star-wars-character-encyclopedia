@@ -1,9 +1,9 @@
 import type { Person } from '@/types/swapi'
 
 type CharacterCardProps = {
-  person: Person
+  character: Person
 }
 
-export default function PeopleCard({ person }: CharacterCardProps) {
-  return <div>{person.name}</div>
+export default function CharacterCard({ character }: CharacterCardProps) {
+  return <div>{character.name}</div>
 }

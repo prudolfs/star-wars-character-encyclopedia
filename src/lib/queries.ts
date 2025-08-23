@@ -10,6 +10,8 @@ export const ALL_PEOPLE = gql`
         gender
         homeworld {
           name
+          climates
+          terrains
         }
         species {
           name
@@ -17,6 +19,8 @@ export const ALL_PEOPLE = gql`
         birthYear
         filmConnection {
           films {
+            id
+            episodeID
             title
           }
         }
@@ -25,6 +29,47 @@ export const ALL_PEOPLE = gql`
       pageInfo {
         hasNextPage
         endCursor
+      }
+    }
+  }
+`
+
+export const GET_PERSON_DETAILS = gql`
+  query GetPersonDetails($id: ID!) {
+    person(id: $id) {
+      id
+      name
+      height
+      mass
+      hairColor
+      skinColor
+      eyeColor
+      birthYear
+      gender
+      homeworld {
+        id
+        name
+        climates
+        terrains
+        population
+        diameter
+      }
+      species {
+        id
+        name
+        classification
+        language
+        averageHeight
+        averageLifespan
+      }
+      filmConnection {
+        films {
+          id
+          title
+          episodeID
+          releaseDate
+          director
+        }
       }
     }
   }

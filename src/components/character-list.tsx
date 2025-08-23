@@ -13,7 +13,7 @@ export default function CharacterList({ characters }: CharacterListProps) {
   const virtualizer = useVirtualizer({
     count: characters.length,
     getScrollElement: () => container.current,
-    estimateSize: () => 244,
+    estimateSize: () => 294,
     overscan: 2,
     scrollMargin: 0,
   })

@@ -79,9 +79,9 @@ export type Planet = {
   rotationPeriod: number
   orbitalPeriod: number
   diameter: number
-  climate: string
+  climates: string[]
   gravity: string
-  terrain: string
+  terrains: string[]
   surfaceWater: number
   population: number
   residentConnection: {

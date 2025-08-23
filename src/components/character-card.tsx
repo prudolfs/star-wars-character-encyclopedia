@@ -41,7 +41,9 @@ export default function CharacterCard({ character }: CharacterCardProps) {
               <span>{character.species[0].name}</span>
             </div>
           )}
-          <p className="text-sm text-gray-400">Born: {character.birthYear || 'Unknown'}</p>
+          <p className="text-sm text-gray-400">
+            Born: {character.birthYear || 'Unknown'}
+          </p>
         </div>
 
         <div className="mb-4 flex flex-wrap gap-1">

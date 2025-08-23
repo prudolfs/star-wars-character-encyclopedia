@@ -1,3 +1,10 @@
+## Use the schema from the SWAPI GraphQL GitHub repo
+
+```bash
+curl https://raw.githubusercontent.com/graphql/swapi-graphql/master/schema.graphql \
+  -o schema.graphql
+```
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started

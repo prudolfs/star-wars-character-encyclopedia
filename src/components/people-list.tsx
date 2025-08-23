@@ -1,0 +1,57 @@
+import { useVirtualizer } from '@tanstack/react-virtual'
+import { useRef } from 'react'
+import PeopleCard from '@/components/people-card'
+import type { Person } from '@/types/swapi'
+
+type PeopleListProps = {
+  people: Person[]
+}
+
+export default function PeopleList({ people }: PeopleListProps) {
+  const container = useRef<HTMLDivElement>(null)
+
+  const virtualizer = useVirtualizer({
+    count: people.length,
+    getScrollElement: () => container.current,
+    estimateSize: () => 82,
+    overscan: 10,
+    scrollMargin: container.current?.offsetTop || 0,
+  })
+
+  return (
+    <div
+      ref={container}
+      className="h-screen overflow-auto  scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100"
+      style={{ contain: 'strict',  WebkitOverflowScrolling: 'touch' }}
+    >
+      <div
+        style={{
+          height: virtualizer.getTotalSize(),
+          width: '100%',
+          position: 'relative',
+        }}
+      >
+        {virtualizer.getVirtualItems().map((virtualRow) => {
+          const person = people[virtualRow.index]
+          return (
+            <div
+              key={virtualRow.key}
+              style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: virtualRow.size,
+                transform: `translateY(${virtualRow.start}px)`,
+              }}
+            >
+              <div className="h-full p-2">
+                <PeopleCard person={person} />
+              </div>
+            </div>
+          )
+        })}
+      </div>
+    </div>
+  )
+}

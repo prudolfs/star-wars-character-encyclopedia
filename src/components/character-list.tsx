@@ -13,15 +13,15 @@ export default function CharacterList({ characters }: CharacterListProps) {
   const virtualizer = useVirtualizer({
     count: characters.length,
     getScrollElement: () => container.current,
-    estimateSize: () => 82,
-    overscan: 10,
+    estimateSize: () => 244,
+    overscan: 2,
     scrollMargin: 0,
   })
 
   return (
     <div
       ref={container}
-      className="h-screen overflow-auto"
+      className="h-[calc(100vh-200px)] overflow-auto"
       style={{ contain: 'strict', WebkitOverflowScrolling: 'touch' }}
     >
       <div
@@ -45,9 +45,7 @@ export default function CharacterList({ characters }: CharacterListProps) {
                 transform: `translateY(${virtualRow.start}px)`,
               }}
             >
-              <div className="h-full p-2">
-                <CharacterCard character={person} />
-              </div>
+              <CharacterCard character={person} />
             </div>
           )
         })}

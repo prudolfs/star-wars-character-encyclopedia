@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from 'react'
 import { useQuery } from '@apollo/client/react'
-import { AlertCircle, Users } from 'lucide-react'
+import { AlertCircle, Rocket } from 'lucide-react'
 import LoadingSpinner from '@/components/loading-spinner'
 import Filters from '@/components/filters'
 import CharacterList from '@/components/character-list'
@@ -66,7 +66,7 @@ export default function CharacterPage() {
       <header className="border-b border-gray-800 bg-gray-900/50 backdrop-blur-sm">
         <div className="container mx-auto px-4 py-6">
           <div className="flex items-center space-x-3">
-            <Users className="h-8 w-8 text-yellow-400" />
+            <Rocket className="h-8 w-8 text-yellow-400" />
             <h1 className="text-2xl font-bold text-white md:text-3xl">
               Star Wars Characters
             </h1>

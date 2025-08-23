@@ -39,7 +39,7 @@ export type Person = {
 export type Film = {
   id: string
   title: string
-  episodeId: number
+  episodeID: number
   openingCrawl: string
   director: string
   producers: string[]

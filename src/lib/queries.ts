@@ -7,6 +7,19 @@ export const ALL_PEOPLE = gql`
         id
         name
         birthYear
+        gender
+        homeworld {
+          name
+        }
+        species {
+          name
+        }
+        birthYear
+        filmConnection {
+          films {
+            title
+          }
+        }
       }
       totalCount
       pageInfo {

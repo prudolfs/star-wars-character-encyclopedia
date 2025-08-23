@@ -15,14 +15,14 @@ export default function PeopleList({ people }: PeopleListProps) {
     getScrollElement: () => container.current,
     estimateSize: () => 82,
     overscan: 10,
-    scrollMargin: container.current?.offsetTop || 0,
+    scrollMargin:  0,
   })
 
   return (
     <div
       ref={container}
-      className="h-screen overflow-auto  scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100"
-      style={{ contain: 'strict',  WebkitOverflowScrolling: 'touch' }}
+      className="h-screen overflow-auto"
+      style={{ contain: 'strict', WebkitOverflowScrolling: 'touch' }}
     >
       <div
         style={{

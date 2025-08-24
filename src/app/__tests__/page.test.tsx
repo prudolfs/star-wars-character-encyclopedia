@@ -1,7 +1,8 @@
 import { render, screen, waitFor, fireEvent } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { MockedProvider } from '@apollo/client/testing/react'
-import { ApolloClient, InMemoryCache } from '@apollo/client'
+import { ApolloClient, InMemoryCache, ApolloLink } from '@apollo/client'
+import { Observable } from '@apollo/client/utilities'
 import { ApolloProvider } from '@apollo/client/react'
 import { test, expect } from 'vitest'
 import CharacterPage from '@/app/page'
@@ -46,11 +47,16 @@ const mockData = {
   },
 }
 
+const mockLink = new ApolloLink(() => {
+  return new Observable(observer => {
+    observer.next({ data: mockData })
+    observer.complete()
+  })
+})
+
 const mockClient = new ApolloClient({
   cache: new InMemoryCache(),
-  link: {
-    request: () => Promise.resolve({ data: mockData }),
-  } as any,
+  link: mockLink,
 })
 
 const mocks = [

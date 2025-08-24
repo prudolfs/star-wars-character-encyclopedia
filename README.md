@@ -20,13 +20,13 @@ Visit the live application: [https://star-wars-character-encyclopedia.vercel.app
 - **Virtualized Lists**: Efficient rendering of large character lists using `@tanstack/react-virtual`
 - **Responsive Design**: Mobile-first design with Tailwind CSS
 - **Loading States**: Smooth loading indicators and error handling
-- **Modern UI**: Clean interface with Radix UI and ShadCn UI components
+- **Modern UI**: Clean interface with Radix UI and Shadcn UI components
 
 ## 🛠 Tech Stack
 
 - **Framework**: Next.js 15 with App Router
 - **Frontend**: React 19, TypeScript
-- **Styling**: Tailwind CSS, Radix UI and ShadCn UI
+- **Styling**: Tailwind CSS, Radix UI and Shadcn UI
 - **Data Fetching**: Apollo Client, GraphQL
 - **Virtualization**: TanStack Virtual
 - **Testing**: Vitest, React Testing Library
@@ -127,7 +127,7 @@ src/
 │   ├── api/swapi/          # API proxy route
 │   └── page.tsx           # Home page
 ├── components/            # Reusable React components
-│   ├── ui/               # Base UI components (Radix UI, ShadCn UI)
+│   ├── ui/               # Base UI components (Radix UI, Shadcn UI)
 │   └── __tests__/        # Component tests
 ├── lib/                  # Utilities and configurations
 │   ├── apollo-client.ts  # Apollo Client setup
@@ -150,7 +150,7 @@ Make sure to set the `SWAPI_URL` environment variable in your Vercel project set
 The application uses a consistent design system built with:
 - **Colors**: Dark theme with yellow accents (Star Wars inspired)
 - **Typography**: Geist font family
-- **Components**: Radix UI and ShadCn UI primitives with custom styling
+- **Components**: Radix UI and Shadcn UI primitives with custom styling
 - **Icons**: Lucide React icons
 - **Responsive**: Mobile-first approach with Tailwind CSS
 

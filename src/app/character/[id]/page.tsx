@@ -175,7 +175,7 @@ export default function CharacterDetailsPage() {
                 <div className="grid grid-cols-2 gap-3">
                   <div>
                     <p className="text-sm text-gray-400">Climate</p>
-                    <div className="flex gap-2 flex-wrap">
+                    <div className="flex flex-wrap gap-2">
                       {character.homeworld?.climates?.map((climate, i) => (
                         <Badge
                           key={i}
@@ -189,7 +189,7 @@ export default function CharacterDetailsPage() {
                   </div>
                   <div>
                     <p className="text-sm text-gray-400">Terrain</p>
-                    <div className="flex gap-2 flex-wrap">
+                    <div className="flex flex-wrap gap-2">
                       {character.homeworld?.terrains?.map((terrain, i) => (
                         <Badge
                           key={i}

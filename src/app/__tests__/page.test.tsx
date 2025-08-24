@@ -1,17 +1,19 @@
-import { render, screen, waitFor } from '@testing-library/react'
+import { render, screen, waitFor, fireEvent } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
+import { MockedProvider } from '@apollo/client/testing/react'
 import { ApolloClient, InMemoryCache } from '@apollo/client'
 import { ApolloProvider } from '@apollo/client/react'
 import { test, expect } from 'vitest'
 import CharacterPage from '@/app/page'
+import { ALL_PEOPLE } from '@/lib/queries'
 
 const mockData = {
   allPeople: {
     people: [
       {
         id: '1',
-        name: 'Luke Skywalker',
-        birthYear: '19BBY',
+        name: 'Darth Vader',
+        birthYear: '41.9BBY',
         gender: 'male',
         homeworld: {
           name: 'Tatooine',
@@ -25,8 +27,8 @@ const mockData = {
       },
       {
         id: '2',
-        name: 'Darth Vader',
-        birthYear: '41.9BBY',
+        name: 'Luke Skywalker',
+        birthYear: '19BBY',
         gender: 'male',
         homeworld: {
           name: 'Tatooine',
@@ -51,13 +53,25 @@ const mockClient = new ApolloClient({
   } as any,
 })
 
+const mocks = [
+  {
+    request: {
+      query: ALL_PEOPLE,
+      variables: {},
+    },
+    result: {
+      data: mockData,
+    },
+  },
+]
+
 test('renders page with characters and filters work correctly', async () => {
   const user = userEvent.setup()
 
   render(
-    <ApolloProvider client={mockClient}>
+    <MockedProvider mocks={mocks}>
       <CharacterPage />
-    </ApolloProvider>,
+    </MockedProvider>,
   )
 
   await waitFor(() => {
@@ -79,15 +93,15 @@ test('renders page with characters and filters work correctly', async () => {
   await user.clear(searchInput)
 
   await waitFor(() => {
-    expect(screen.getByText('Luke Skywalker')).toBeDefined()
     expect(screen.getByText('Darth Vader')).toBeDefined()
+    expect(screen.getByText('Luke Skywalker')).toBeDefined()
   })
 
-  await user.click(screen.getByRole('combobox'))
-  await user.click(screen.getByText('Name: Z to A'))
+  fireEvent.click(screen.getByRole('combobox'))
+  fireEvent.click(screen.getByText('Name: Z to A'))
 
-  const characterNames = screen.getAllByText(/Skywalker|Vader/)
-  expect(characterNames[0].textContent).toContain('Darth Vader')
+  const characterNames = screen.getAllByText(/Dart|Luke/)
+  expect(characterNames[0].textContent).toContain('Luke Skywalker')
 })
 
 test('shows loading spinner initially', () => {

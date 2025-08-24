@@ -1,5 +1,4 @@
 import { render, screen, fireEvent } from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
 import { vi, test, expect, beforeEach } from 'vitest'
 import Filters from '@/components/filters'
 

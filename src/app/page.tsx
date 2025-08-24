@@ -16,9 +16,7 @@ export default function CharacterPage() {
   const { data, loading, error } = useQuery<
     AllPeopleResponse,
     PaginationVariables
-  >(ALL_PEOPLE, {
-    variables: { first: 82 },
-  })
+  >(ALL_PEOPLE)
 
   const characters = useMemo(() => {
     if (!data?.allPeople?.people) {

@@ -10,7 +10,7 @@ const mockClient = new ApolloClient({
   link: {
     request: () => {
       throw new GraphQLError('Network error')
-    }
+    },
   } as any,
 })
 
@@ -18,10 +18,12 @@ test('displays error message when query fails', async () => {
   render(
     <ApolloProvider client={mockClient}>
       <CharacterPage />
-    </ApolloProvider>
+    </ApolloProvider>,
   )
 
   await waitFor(() => {
-    expect(screen.getByText(/Error loading characters: Network error/i)).toBeDefined()
+    expect(
+      screen.getByText(/Error loading characters: Network error/i),
+    ).toBeDefined()
   })
 })

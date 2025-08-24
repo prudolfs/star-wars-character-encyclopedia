@@ -13,7 +13,11 @@ const mockData = {
         name: 'Luke Skywalker',
         birthYear: '19BBY',
         gender: 'male',
-        homeworld: { name: 'Tatooine', climates: ['arid'], terrains: ['desert'] },
+        homeworld: {
+          name: 'Tatooine',
+          climates: ['arid'],
+          terrains: ['desert'],
+        },
         species: [{ name: 'Human' }],
         filmConnection: {
           films: [{ id: '1', episodeID: 4, title: 'A New Hope' }],
@@ -24,7 +28,11 @@ const mockData = {
         name: 'Darth Vader',
         birthYear: '41.9BBY',
         gender: 'male',
-        homeworld: { name: 'Tatooine', climates: ['arid'], terrains: ['desert'] },
+        homeworld: {
+          name: 'Tatooine',
+          climates: ['arid'],
+          terrains: ['desert'],
+        },
         species: [{ name: 'Human' }],
         filmConnection: {
           films: [{ id: '1', episodeID: 4, title: 'A New Hope' }],
@@ -39,17 +47,17 @@ const mockData = {
 const mockClient = new ApolloClient({
   cache: new InMemoryCache(),
   link: {
-    request: () => Promise.resolve({ data: mockData })
+    request: () => Promise.resolve({ data: mockData }),
   } as any,
 })
 
 test('renders page with characters and filters work correctly', async () => {
   const user = userEvent.setup()
-  
+
   render(
     <ApolloProvider client={mockClient}>
       <CharacterPage />
-    </ApolloProvider>
+    </ApolloProvider>,
   )
 
   await waitFor(() => {
@@ -58,7 +66,9 @@ test('renders page with characters and filters work correctly', async () => {
 
   expect(screen.getByText('Darth Vader')).toBeDefined()
 
-  const searchInput = screen.getByPlaceholderText('Search characters by name...')
+  const searchInput = screen.getByPlaceholderText(
+    'Search characters by name...',
+  )
   await user.type(searchInput, 'Luke')
 
   await waitFor(() => {
@@ -84,7 +94,7 @@ test('shows loading spinner initially', () => {
   render(
     <ApolloProvider client={mockClient}>
       <CharacterPage />
-    </ApolloProvider>
+    </ApolloProvider>,
   )
 
   expect(screen.getByTestId('loading-spinner')).toBeDefined()

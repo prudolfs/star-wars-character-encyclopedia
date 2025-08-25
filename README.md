@@ -184,7 +184,7 @@ The application includes an API proxy route (`/api/swapi`) that:
 
 This project is open source and available under the [MIT License](LICENSE).
 
-## 🙏 AcknowledgmentsC
+## 🙏 Acknowledgments
 
 - [SWAPI](https://swapi.dev/) for providing the Star Wars data
 - [Next.js](https://nextjs.org/) team for the amazing framework
